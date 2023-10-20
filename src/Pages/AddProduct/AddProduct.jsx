@@ -1,9 +1,32 @@
 const AddProduct = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photo = form.image.value;
+    const brand = form.brandName.value;
+    const price = form.price.value;
+    const shortDescription = form.shortDescription.value;
+    const rating = form.rating.value;
+    const newProduct = { name, photo, brand, price, shortDescription, rating };
+    console.log(newProduct);
+    fetch("http://localhost:5000/products", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
   return (
     <div>
       <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
               <div className="max-w-md mx-auto">
                 {/* Form Header */}
@@ -27,6 +50,7 @@ const AddProduct = () => {
                         Name
                       </label>
                       <input
+                        required
                         type="text"
                         id="name"
                         name="name"
@@ -39,6 +63,7 @@ const AddProduct = () => {
                         Image
                       </label>
                       <input
+                        required
                         type="text"
                         id="image"
                         name="image"
@@ -46,17 +71,23 @@ const AddProduct = () => {
                         placeholder="Image URL"
                       />
                     </div>
+
                     <div className="flex flex-col">
                       <label htmlFor="brandName" className="leading-loose">
                         Brand Name
                       </label>
-                      <select className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
-                        <option value="toyota">Toyota</option>
-                        <option value="ford">Ford</option>
-                        <option value="bmw">BMW</option>
-                        <option value="mercedes-Benz">Mercedes-Benz</option>
-                        <option value="tesla">Tesla</option>
-                        <option value="honda">Honda</option>
+                      <select
+                        required
+                        id="brandName"
+                        name="brandName" // Add the name attribute here
+                        className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                      >
+                        <option value="Toyota">Toyota</option>
+                        <option value="Ford">Ford</option>
+                        <option value="BMW">BMW</option>
+                        <option value="Mercedes-Benz">Mercedes-Benz</option>
+                        <option value="Tesla">Tesla</option>
+                        <option value="Honda">Honda</option>
                       </select>
                     </div>
                     <div className="flex flex-col">
@@ -64,6 +95,7 @@ const AddProduct = () => {
                         Price
                       </label>
                       <input
+                        required
                         type="text"
                         id="price"
                         name="price"
@@ -79,6 +111,7 @@ const AddProduct = () => {
                         Short Description
                       </label>
                       <input
+                        required
                         type="text"
                         id="shortDescription"
                         name="shortDescription"
@@ -91,6 +124,7 @@ const AddProduct = () => {
                         Rating
                       </label>
                       <input
+                        required
                         type="text"
                         id="rating"
                         name="rating"
@@ -103,7 +137,7 @@ const AddProduct = () => {
                   {/* Submit Button */}
                   <div className="pt-4 flex items-center space-x-4">
                     <button
-                      type="button"
+                      type="submit"
                       className="bg-[#ff5030] flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
                     >
                       Add
