@@ -1,8 +1,9 @@
 import { BsStarFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 const ProductCard = ({ branding }) => {
-  const { name, photo, brand, price, rating } = branding;
+  const { _id, name, photo, brand, price, rating } = branding;
   return (
     <div className="relative m-10 flex w-full  flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
       <a
@@ -35,12 +36,13 @@ const ProductCard = ({ branding }) => {
             </span>
           </div>
         </div>
-        <a
+        <Link
+          to={`/products/${_id}`}
           href="#"
           className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
           Product Details
-        </a>
+        </Link>
         <a
           href="#"
           className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300 mt-3"
