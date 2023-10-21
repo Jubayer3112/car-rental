@@ -34,7 +34,7 @@ const Router = createBrowserRouter([
         ),
         loader: () =>
           fetch(
-            "https://car-rent-server-7lj4ehbuv-jubayer3112.vercel.app/cart"
+            "https://car-rent-server-p9l7xvtsh-jubayer3112.vercel.app/cart"
           ),
       },
       {
@@ -67,7 +67,7 @@ const Router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://car-rent-server-7lj4ehbuv-jubayer3112.vercel.app/products/${params.id}`
+            `https://car-rent-server-p9l7xvtsh-jubayer3112.vercel.app/products/${params.id}`
           ),
       },
       {
@@ -79,7 +79,7 @@ const Router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://car-rent-server-7lj4ehbuv-jubayer3112.vercel.app/products/${params.id}`
+            `https://car-rent-server-p9l7xvtsh-jubayer3112.vercel.app/products/${params.id}`
           ),
       },
     ],

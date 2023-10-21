@@ -8,11 +8,14 @@ import Switcher from "../../components/ThemeSwitcher/switcher";
 const Home = () => {
   return (
     <div>
+      <div className="fixed top-28 right-16 text-4xl">
+        <Switcher />
+      </div>
       <Banner />
       <Category />
       <CTA />
       <Feature />
-      <Switcher />
+
       <Footer />
     </div>
   );

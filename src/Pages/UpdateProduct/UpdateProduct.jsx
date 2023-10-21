@@ -24,7 +24,7 @@ const UpdateProduct = () => {
     };
     // console.log(updatedProduct);
     fetch(
-      `https://car-rent-server-7lj4ehbuv-jubayer3112.vercel.app/products/${_id}`,
+      `https://car-rent-server-p9l7xvtsh-jubayer3112.vercel.app/products/${_id}`,
       {
         method: "PUT",
         headers: {

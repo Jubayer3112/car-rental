@@ -17,7 +17,7 @@ const CartItem = ({ product, updateCart, setUpdateCart }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `https://car-rent-server-7lj4ehbuv-jubayer3112.vercel.app/cart/${id}`,
+          `https://car-rent-server-p9l7xvtsh-jubayer3112.vercel.app/cart/${id}`,
           {
             method: "DELETE",
           }
@@ -30,6 +30,7 @@ const CartItem = ({ product, updateCart, setUpdateCart }) => {
                 (remCart) => remCart._id !== id
               );
               setUpdateCart(remainingCart);
+              console.log(remainingCart);
             }
           });
       }

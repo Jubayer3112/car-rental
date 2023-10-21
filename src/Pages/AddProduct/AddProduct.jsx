@@ -11,7 +11,7 @@ const AddProduct = () => {
     const rating = form.rating.value;
     const newProduct = { name, photo, brand, price, shortDescription, rating };
     console.log(newProduct);
-    fetch("https://car-rent-server-7lj4ehbuv-jubayer3112.vercel.app/products", {
+    fetch("https://car-rent-server-p9l7xvtsh-jubayer3112.vercel.app/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",
