@@ -13,7 +13,7 @@ const ProductDetails = () => {
   const cartProduct = { image, title, cartPrice, userEmail };
 
   const handleAddToCArt = () => {
-    fetch("http://localhost:5000/cart/", {
+    fetch("https://car-rent-server-7lj4ehbuv-jubayer3112.vercel.app/cart/", {
       method: "POST",
       headers: {
         "content-type": "application/json",

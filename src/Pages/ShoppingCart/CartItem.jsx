@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 /* eslint-disable react/prop-types */
 const CartItem = ({ product, updateCart, setUpdateCart }) => {
   const { _id, image, title, cartPrice } = product;
-  
+
   console.log(updateCart);
   const handleDelete = (id) => {
     Swal.fire({
@@ -16,14 +16,19 @@ const CartItem = ({ product, updateCart, setUpdateCart }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/cart/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://car-rent-server-7lj4ehbuv-jubayer3112.vercel.app/cart/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
-              const remainingCart = updateCart.filter((remCart) => remCart._id !== id)
+              const remainingCart = updateCart.filter(
+                (remCart) => remCart._id !== id
+              );
               setUpdateCart(remainingCart);
             }
           });

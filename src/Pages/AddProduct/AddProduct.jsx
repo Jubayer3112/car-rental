@@ -11,7 +11,7 @@ const AddProduct = () => {
     const rating = form.rating.value;
     const newProduct = { name, photo, brand, price, shortDescription, rating };
     console.log(newProduct);
-    fetch("http://localhost:5000/products", {
+    fetch("https://car-rent-server-7lj4ehbuv-jubayer3112.vercel.app/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -21,9 +21,7 @@ const AddProduct = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          Swal.fire("Good job!", 
-          "Your Product is Added", 
-          "success");
+          Swal.fire("Good job!", "Your Product is Added", "success");
         }
       });
   };

@@ -23,13 +23,16 @@ const UpdateProduct = () => {
       rating,
     };
     // console.log(updatedProduct);
-    fetch(`http://localhost:5000/products/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedProduct),
-    })
+    fetch(
+      `https://car-rent-server-7lj4ehbuv-jubayer3112.vercel.app/products/${_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedProduct),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

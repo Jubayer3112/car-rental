@@ -6,7 +6,7 @@ const BrandProduct = () => {
   const [branded, setBranded] = useState([]);
   const { brand } = useParams();
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://car-rent-server-7lj4ehbuv-jubayer3112.vercel.app/products")
       .then((res) => res.json())
       .then((data) => setBranded(data));
   }, []);

@@ -32,7 +32,10 @@ const Router = createBrowserRouter([
             <ShoppingCart />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/cart"),
+        loader: () =>
+          fetch(
+            "https://car-rent-server-7lj4ehbuv-jubayer3112.vercel.app/cart"
+          ),
       },
       {
         path: "/login",
@@ -63,7 +66,9 @@ const Router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://car-rent-server-7lj4ehbuv-jubayer3112.vercel.app/products/${params.id}`
+          ),
       },
       {
         path: "/updateproduct/:id",
@@ -73,7 +78,9 @@ const Router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://car-rent-server-7lj4ehbuv-jubayer3112.vercel.app/products/${params.id}`
+          ),
       },
     ],
   },
