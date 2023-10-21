@@ -20,14 +20,13 @@ const BrandProduct = () => {
       <Slider />
       {brandProduct.length > 0 ? (
         <div className="container mx-auto">
-          <div className="grid grid-cols-4 gap-8">
+          <div className="grid lg:grid-cols-4 grid-cols-1 gap-8">
             {brandProduct.map((branding) => (
               <ProductCard key={branding.id} branding={branding} />
             ))}
           </div>
         </div>
       ) : (
-        
         <div>
           <img
             src="https://www.pharmacy.precureplus.com/assets/site/images/no_result.gif"

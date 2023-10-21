@@ -14,13 +14,13 @@ const Category = () => {
 
   };
   return (
-    <div>
+    <div >
       <div className=" bg-gray-100 text-center py-16">
         <h1 className="text-6xl font-bold text-[#010103]">
           Explore Our <span className="text-[#ff5030]">Brands</span>
         </h1>
 
-        <div className="grid grid-cols-3 gap-7 container mx-auto ">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7 container mx-auto ">
           {brands.map((brand) => (
             <Link
               to={`/brandProduct/${brand.brand_name}`}
