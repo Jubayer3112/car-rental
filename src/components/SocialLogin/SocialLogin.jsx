@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SocialLogin = () => {
   const { googleLogin } = useContext(AuthContext);
@@ -8,10 +9,28 @@ const SocialLogin = () => {
   const handleSocialLogin = (media) => {
     media()
       .then((result) => {
+        if (result.user.email) {
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: "Logged in succesfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        //   console.log(result.user);
         navigate("/");
-        console.log(result.user);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: `${error.massege}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
   };
   return (
     <div>

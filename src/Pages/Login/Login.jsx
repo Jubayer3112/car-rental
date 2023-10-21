@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import { useContext } from "react";
 import { AuthContext } from "../../components/Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { logIn } = useContext(AuthContext);
@@ -13,10 +14,31 @@ const Login = () => {
     const password = form.password.value;
     logIn(email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
+        if (result.user.email) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Loggin Succesfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
         navigate("/");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: `${
+            error.code === "auth/invalid-login-credentials" &&
+            "Email password not match in our credentials"
+          }`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
   };
   return (
     <div>

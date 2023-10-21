@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import CartItem from "./CartItem";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../components/Provider/AuthProvider";
 
 const ShoppingCart = () => {
@@ -11,7 +11,7 @@ const ShoppingCart = () => {
     (cart) => cart.userEmail === user.email
   );
   console.log(loadedProduct);
-
+  const [updateCart, setUpdateCart] = useState(loadedProduct);
   return (
     <div>
       {loadedProduct.length > 0 ? (
@@ -29,7 +29,12 @@ const ShoppingCart = () => {
                   <div className="flow-root">
                     <ul className="-my-8">
                       {loadedProduct?.map((product) => (
-                        <CartItem key={product._id} product={product} />
+                        <CartItem
+                          key={product._id}
+                          product={product}
+                          updateCart={updateCart}
+                          setUpdateCart={setUpdateCart}
+                        />
                       ))}
                     </ul>
                   </div>

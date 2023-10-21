@@ -9,11 +9,13 @@ import BrandProduct from "../Pages/Brand/BrandProduct";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import ShoppingCart from "../Pages/ShoppingCart/ShoppingCart";
+import Error from "../Pages/Error/Error";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -25,8 +27,12 @@ const Router = createBrowserRouter([
       },
       {
         path: "/shoppingcart",
-        element: <ShoppingCart />,
-        loader:()=>fetch("http://localhost:5000/cart")
+        element: (
+          <PrivateRoute>
+            <ShoppingCart />
+          </PrivateRoute>
+        ),
+        loader: () => fetch("http://localhost:5000/cart"),
       },
       {
         path: "/login",
@@ -61,7 +67,11 @@ const Router = createBrowserRouter([
       },
       {
         path: "/updateproduct/:id",
-        element: <UpdateProduct />,
+        element: (
+          <PrivateRoute>
+            <UpdateProduct />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/products/${params.id}`),
       },

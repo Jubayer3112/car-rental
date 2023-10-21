@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../components/Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const ProductDetails = () => {
   const { user } = useContext(AuthContext);
@@ -20,7 +21,11 @@ const ProductDetails = () => {
       body: JSON.stringify(cartProduct),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.acknowledged) {
+          Swal.fire("Good job!", "Product is added in Cart", "success");
+        }
+      });
   };
 
   const { name, photo, brand, price, shortDescription } = product;

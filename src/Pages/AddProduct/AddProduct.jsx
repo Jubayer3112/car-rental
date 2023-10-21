@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 const AddProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +20,11 @@ const AddProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.acknowledged) {
+          Swal.fire("Good job!", 
+          "Your Product is Added", 
+          "success");
+        }
       });
   };
   return (

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import { useContext } from "react";
 import { AuthContext } from "../../components/Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { createUser, userProfile } = useContext(AuthContext);
@@ -14,7 +15,19 @@ const Register = () => {
     const password = form.password.value;
     const photo = form.userphoto.value;
 
-    console.log(name, email, password, photo);
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>/?]+)/;
+    if (!passwordRegex.test(password)) {
+      // Password doesn't meet the requirements
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title:
+          "Password must contain at least one capital letter and one special character",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
 
     createUser(email, password)
       .then((result) => {
@@ -23,8 +36,28 @@ const Register = () => {
             navigate("/");
           })
           .catch((error) => console.log(error));
+
+        if (result.user.email) {
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: "Account Created Succesully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: `${error.message}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
   };
   return (
     <div className="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center px-5 py-5">
