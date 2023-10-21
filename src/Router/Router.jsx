@@ -2,13 +2,13 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Home from "../Pages/Home/Home";
 import AddProduct from "../Pages/AddProduct/AddProduct";
-import MyCart from "../Pages/Mycart/MyCart";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import UpdateProduct from "../Pages/UpdateProduct/UpdateProduct";
 import BrandProduct from "../Pages/Brand/BrandProduct";
 import ProductDetails from "../Pages/ProductDetails/ProductDetails";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
+import ShoppingCart from "../Pages/ShoppingCart/ShoppingCart";
 
 const Router = createBrowserRouter([
   {
@@ -24,8 +24,9 @@ const Router = createBrowserRouter([
         element: <AddProduct />,
       },
       {
-        path: "/mycart",
-        element: <MyCart />,
+        path: "/shoppingcart",
+        element: <ShoppingCart />,
+        loader:()=>fetch("http://localhost:5000/cart")
       },
       {
         path: "/login",

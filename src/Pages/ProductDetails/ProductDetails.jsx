@@ -1,8 +1,28 @@
-
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../components/Provider/AuthProvider";
 
 const ProductDetails = () => {
+  const { user } = useContext(AuthContext);
   const product = useLoaderData();
+  const image = product.photo;
+  const title = product.name;
+  const cartPrice = product.price;
+  const userEmail = user.email;
+  const cartProduct = { image, title, cartPrice, userEmail };
+
+  const handleAddToCArt = () => {
+    fetch("http://localhost:5000/cart/", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(cartProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
+
   const { name, photo, brand, price, shortDescription } = product;
   return (
     <div>
@@ -31,7 +51,10 @@ const ProductDetails = () => {
                   </span>
                 </div>
                 <div className="inline-block align-bottom">
-                  <button className="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold">
+                  <button
+                    onClick={handleAddToCArt}
+                    className="bg-yellow-300 opacity-75 hover:opacity-100 text-yellow-900 hover:text-gray-900 rounded-full px-10 py-2 font-semibold"
+                  >
                     <i className="mdi mdi-cart -ml-2 mr-2"></i> Add to Cart
                   </button>
                 </div>

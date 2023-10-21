@@ -104,7 +104,7 @@ const Header = () => {
                     <span className="hidden md:block">Add Product</span>
                   </button>
                 </Link>
-                <Link to={"/mycart"}>
+                <Link to={"/shoppingcart"}>
                   <button className="bg-[#ff5030] text-white flex items-center gap-2 py-2 px-4 rounded ">
                     <FaCartArrowDown />
                     <span className="hidden md:block">My Cart</span>
