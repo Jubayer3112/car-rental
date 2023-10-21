@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import { useContext } from "react";
 import { AuthContext } from "../../components/Provider/AuthProvider";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, userProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -16,7 +17,13 @@ const Register = () => {
     console.log(name, email, password, photo);
 
     createUser(email, password)
-      .then((result) => console.log(result.user))
+      .then((result) => {
+        userProfile(name, photo)
+          .then(() => {
+            navigate("/");
+          })
+          .catch((error) => console.log(error));
+      })
       .catch((error) => console.log(error));
   };
   return (
@@ -42,10 +49,7 @@ const Register = () => {
             <div>
               <div className="flex -mx-3">
                 <div className="w-1/2 px-3 mb-5">
-                  <label
-                    htmlFor="name"
-                    className="text-xs font-semibold px-1"
-                  >
+                  <label htmlFor="name" className="text-xs font-semibold px-1">
                     Name
                   </label>
                   <div className="flex">
@@ -63,10 +67,7 @@ const Register = () => {
                   </div>
                 </div>
                 <div className="w-1/2 px-3 mb-5">
-                  <label
-                    htmlFor="email"
-                    className="text-xs font-semibold px-1"
-                  >
+                  <label htmlFor="email" className="text-xs font-semibold px-1">
                     Email
                   </label>
                   <div className="flex">
